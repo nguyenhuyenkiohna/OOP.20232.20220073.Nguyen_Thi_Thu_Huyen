@@ -1,0 +1,10 @@
+7. When should accessor methods be used?
+Returning objects through interfaces: When a method returns an object that implements a specific interface.
+Accessor methods are used in Java to provide controlled access to the private fields of a class. They allow 
+other classes to retrieve the values of these fields without directly accessing them, thereby promoting 
+encapsulation and data hiding.
+
+8.If you create a constructor method to build a DVD by title then create a constructor method to build a DVD 
+by category. Does JAVA allow you to do this?
+Java doors not allow to build create a constraint Method to build a DVD by Category After Creating a Construction
+ Method to build a DVD by Title

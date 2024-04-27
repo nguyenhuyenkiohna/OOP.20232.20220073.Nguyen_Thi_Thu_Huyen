@@ -1,0 +1,41 @@
+4. 
+Suggestion: Write a toString() method for the DigitalVideoDisc class. 
+What should be the return type of this method? 
+String
+
+14.
+- Which classes are aggregates of other classes? Checking all constructors
+ of whole classes if they initialize for their parts?
+Classes are aggregates of other classes: Cart, Store, CompactDisc.
+
+17. Sort media in the cart
+- What class should implement the Comparable approach?
+  Comparable approach should be implemented in Media class.
+- In those classes, how should you implement the compareTo()method to reflect the ordering that we want? 
+-CompareByTitle:
+@Override
+    public int compareTo(Media media) {
+        int result = this.getTitle().compareTo(media.getTitle());
+            if (result == 0) {
+                result = Float.compare(media2.getCost(), media1.getCost());
+            }
+            return result;
+    }
+-CompareByCost
+@Override
+    public int compareTo(Media media) {
+        int result = Float.compare(media2.getCost(), media1.getCost());
+            if (result == 0) {
+                result = this.getTitle().compareTo(media.getTitle());
+            }
+            return result;
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use 
+this Comparable interface approach?
+Yes, but in an implement of Comparable, there is just ONE compareTo method, which means that we must
+ use complicated logics in coding this compareTo method to handle all of two ordering rules.
+-Suppose the DVDs have a different ordering rule from the other media types, that is by title, then 
+decreasing length, then cost. How would you modify your code to allow this?
+Yes, first, we must override compareTo method. Second, we could create an another compareTo method, 
+we make the override compareTo method to return to this new compareTo method. We could adjust this new 
+method following sorting rules.
+    

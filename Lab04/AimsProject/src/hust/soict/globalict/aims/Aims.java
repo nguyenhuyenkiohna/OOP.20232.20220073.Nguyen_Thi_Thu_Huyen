@@ -254,7 +254,7 @@ public class Aims {
                     authors.add(au);
                 }
                 scanner.nextLine();
-                Book addBook = new Book(title, category, cost, authors);
+                Book addBook = new Book(id, title, category, cost,authors);
                 store.addMedia(addBook);
                 break;
             
@@ -285,7 +285,7 @@ public class Aims {
                 System.out.println("Enter artist of media: ");
                 String artist = scanner.nextLine();
                 scanner.nextLine();
-                CompactDisc addCompactDisc = new CompactDisc(id2, title2, category2, cost2, artist, title2);
+                CompactDisc addCompactDisc = new CompactDisc(id2, title2, category2,cost2,artist);
                 store.addMedia(addCompactDisc);
                 break;
             

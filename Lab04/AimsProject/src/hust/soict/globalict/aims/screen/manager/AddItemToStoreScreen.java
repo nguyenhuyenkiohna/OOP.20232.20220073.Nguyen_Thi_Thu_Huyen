@@ -26,7 +26,7 @@ public class AddItemToStoreScreen extends JPanel{
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(400,500));
 
-        JLabel title = new JLabel("ADD " +s +" TO STORE");
+        JLabel title = new JLabel("Add new " +s +" to store:");
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN,30));
         panel.add(title);
     }
@@ -35,7 +35,7 @@ public class AddItemToStoreScreen extends JPanel{
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.setPreferredSize(new Dimension(400,30));
-        addButton = new JButton("ADD TO STORE");
+        addButton = new JButton("Add to store");
         buttonPanel.add(Box.createRigidArea(new Dimension(130,30)));
         buttonPanel.add(addButton);
         buttonPanel.add(Box.createHorizontalGlue());

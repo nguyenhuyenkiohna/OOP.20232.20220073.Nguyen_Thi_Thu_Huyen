@@ -23,7 +23,7 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
     JButton buttonTrack;
 
     public AddCompactDiscToStoreScreen(Store store){
-        super("Add new CD");
+        super("CD");
         this.store= store;
         this.addComponents();
         super.createButton();
@@ -136,7 +136,7 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
             restart();
         }
     }
-    
+
     public void restart(){
         remove(panel);
         panel.remove(trackscreen);

@@ -1,59 +1,30 @@
 package hust.soict.globalict.aims.media;
 
-// import hust.soict.globalict.aims.media.Media;
-
-public class Disc extends Media{
-    private int length;
+public class Disc extends Media {
     private String director;
-
-    public int getLength(){
-        return length;
-    }
-    public String getDirector(){
+    private int length;
+    public String getDirector() {
         return director;
     }
 
-    public Disc(int id, String title, String category, String string, int length, String director){
-        this.id=id;
-        this.title=title;
-        this.category=category;
-        this.cost=cost;
-        this.length=length;
+    public int getLength() {
+        return length;
+    }
+    public void setDirector(String director) {
         this.director=director;
     }
-    public Disc(){
 
-    }
-    public Disc(String title){
-        this.title=title;
-    }
-    public Disc(String title, String category, float cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
-    }
-    public Disc(String title,String category,String director,float cost){
-        this.title=title;
-        this.category=category;
-        this.cost=cost;
-        this.director=director;
-    }
-    public Disc(String title, String category, String director,int length,float cost){
-        this.title=title;
-        this.category=category;
-        this.cost=cost;
-        this.director=director;
+    public void setLength(int length) {
         this.length=length;
     }
-    
-    @Override
-    public boolean checkType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkType'");
+
+    public Disc(int id, String title, String category, String director, int length, float cost){
+        super(id,title,category,cost);
+        setDirector(director);
+        setLength(length);
     }
-    @Override
-    public void play() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
+
+    public Disc(){
+        super();
     }
 }

@@ -15,7 +15,7 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen{
     Listener buLis = new Listener();
 
     public AddDigitalVideoDiscToStoreScreen(Store store){
-        super("Add new DVD");
+        super("DVD");
         this.store= store;
         this.addComponents();
         super.createButton();

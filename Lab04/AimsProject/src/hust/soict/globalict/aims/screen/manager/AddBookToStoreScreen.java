@@ -16,7 +16,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
     private List<String> authors = new ArrayList<>(); 
 
     public AddBookToStoreScreen(Store store) {
-        super(" Add new BOOK"); 
+        super("BOOK"); 
 
         this.store = store;
         addComponents(); 

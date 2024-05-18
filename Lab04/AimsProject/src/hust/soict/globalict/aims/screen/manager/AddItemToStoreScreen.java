@@ -8,17 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddItemToStoreScreen extends JPanel{
-    private JLabel lid, ltitle, lcategory, lcost ;
-    protected JTextField tfid, tftitle, tfcategory, tfcost;
+    protected Store store;
     protected int id;
     protected String title;
     protected String category;
     protected float cost;
-    protected JButton btnadd ;
+    protected JButton addButton ;
+    private JLabel idLabel, titleLabel, categoryLabel, costLabel ;
+    protected JTextField idTextField, titleTextField, categoryTextField, costTextField;
 
-    protected Store store;
     protected JPanel panel = new JPanel();
     protected JPanel panbut;
+
     public AddItemToStoreScreen(String s){
         setLayout(new FlowLayout());
         setSize(new Dimension(400,500));
@@ -29,73 +30,81 @@ public class AddItemToStoreScreen extends JPanel{
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN,30));
         panel.add(title);
     }
+
     public void createButton (){
         panbut = new JPanel();
         panbut.setLayout(new BoxLayout(panbut, BoxLayout.X_AXIS));
         panbut.setPreferredSize(new Dimension(400,30));
-        btnadd = new JButton("ADD TO STORE");
+        addButton = new JButton("ADD TO STORE");
         panbut.add(Box.createRigidArea(new Dimension(130,30)));
-        panbut.add(btnadd);
+        panbut.add(addButton);
         panbut.add(Box.createHorizontalGlue());
         panel.add(panbut);
     }
 
     public void addComponents(){
-        lid = new JLabel("ID:");
-        ltitle = new JLabel("Title:");
-        lcategory = new JLabel("Category:");
-        lcost = new JLabel("Cost($):");
+        idLabel = new JLabel("ID: ");
+        idTextField = new JTextField("");
+        panel.add(addPanel(idLabel,idTextField));
 
-        tfid = new JTextField("");
-        tftitle = new JTextField("");
-        tfcategory = new JTextField("");
-        tfcost = new JTextField("");
+        titleLabel = new JLabel("Title: ");
+        titleTextField = new JTextField("");
+        panel.add(addPanel(titleLabel,titleTextField));
 
-        panel.add(addPanel(lid,tfid));
-        panel.add(addPanel(ltitle,tftitle));
-        panel.add(addPanel(lcategory,tfcategory));
-        panel.add(addPanel(lcost,tfcost));
+        categoryLabel = new JLabel("Category: ");
+        categoryTextField = new JTextField("");
+        panel.add(addPanel(categoryLabel,categoryTextField));
+
+        costLabel = new JLabel("Cost ($): ");
+        costTextField = new JTextField("");
+        panel.add(addPanel(costLabel,costTextField));
     }
-    public JPanel addPanel(JLabel label, JTextField tf){
-        JPanel pan = new JPanel();
-        pan = new JPanel();
-        pan.setLayout(new BoxLayout(pan, BoxLayout.X_AXIS));
-        pan.setPreferredSize(new Dimension(400,30));
+
+    public JPanel addPanel(JLabel label, JTextField textField){
+        JPanel jPanel = new JPanel();
+
+        jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.X_AXIS));
+        jPanel.setPreferredSize(new Dimension(400,30));
 
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setPreferredSize(new Dimension(120, 30));
-        tf.setPreferredSize(new Dimension(250, 30));
+        jPanel.add(label);
 
-        pan.add(label);
-        pan.add(Box.createRigidArea(new Dimension(10,10)));
-        pan.add(tf);
-        return pan;
+        jPanel.add(Box.createRigidArea(new Dimension(10,10)));
+
+        textField.setPreferredSize(new Dimension(250, 30));
+        jPanel.add(textField);
+
+        return jPanel;
     }
 
-    public JPanel addPanel1(JLabel label, JTextArea tf){
-        JPanel pan = new JPanel();
-        pan.setLayout(new BoxLayout(pan, BoxLayout.X_AXIS));
-        pan.setPreferredSize(new Dimension(400,60));
+    public JPanel addPanel1(JLabel label, JTextArea textArea){
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.X_AXIS));
+        jPanel.setPreferredSize(new Dimension(400,60));
 
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setPreferredSize(new Dimension(120, 60));
-        tf = new JTextArea("",3,7);
-        JScrollPane scrollPane = new JScrollPane(tf, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        tf.setLineWrap(true);
+        jPanel.add(label);
 
-        pan.add(label);
-        pan.add(Box.createRigidArea(new Dimension(10,10)));
-        pan.add(scrollPane);
-        return pan;
+        jPanel.add(Box.createRigidArea(new Dimension(10,10)));
+
+        textArea = new JTextArea("",3,7);
+
+        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        textArea.setLineWrap(true);
+        jPanel.add(scroll);
+
+        return jPanel;
     }
 
     public class Listener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            id = Integer.parseInt(tfid.getText());
-            title= new String(tftitle.getText());
-            category= new String(tfcategory.getText());
-            cost= Float.parseFloat(tfcost.getText());
+            id = Integer.parseInt(idTextField.getText());
+            title= new String(titleTextField.getText());
+            category= new String(categoryTextField.getText());
+            cost= Float.parseFloat(costTextField.getText());
         }
     }
 }

@@ -10,10 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
 public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
-    JLabel lartist, ltracklist, ldirector, llength, ltrack;
+    JLabel artistLabel, tracklistLabel, ldirector, llength, ltrack;
     JTextField tfartist, tftracklist, tfdirector, tflength, tftrack;
     private String artist;
     private ArrayList<Track> tracklist = new ArrayList<>();
@@ -35,16 +33,14 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
 
     @Override
     public void addComponents(){
-//        JOptionPane.showMessageDialog(null, "buoc 1");
         super.addComponents();
-//        JOptionPane.showMessageDialog(null, "buoc 2");
-        lartist = new JLabel("Artist:");
+        artistLabel = new JLabel("Artist:");
         ldirector = new JLabel("Director:");
 
         tfartist = new JTextField("");
         tfdirector = new JTextField("");
 
-        panel.add(addPanel(lartist,tfartist));
+        panel.add(addPanel(artistLabel,tfartist));
         panel.add(addPanel(ldirector, tfdirector));
     }
 
@@ -61,7 +57,6 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
         addTrack.setLayout(new BoxLayout(addTrack, BoxLayout.X_AXIS));
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         addTrack.setPreferredSize(new Dimension(500,90));
-//        addTrack.setBorder(border);
 
         JPanel rightside = new JPanel();
         rightside.setLayout(new BoxLayout(rightside, BoxLayout.Y_AXIS));
@@ -81,7 +76,6 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
         Listoftrack.setBorder(border);
         Listoftrack.setEditable(false);
 
-//        JOptionPane.showMessageDialog(null,"hhahahaha");
         rightside.add(addPanel(ltrack,tftrack));
 
         rightside.add(addPanel(llength,tflength));
@@ -153,7 +147,6 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
             super.actionPerformed(e);
             director = new String(tfdirector.getText());
             artist = new String(tfartist.getText());
-//            tracklist = (ArrayList<Track>) tftracklist.getText().split("\\S+\n");
 
             store.addMedia(new CompactDisc(id, title, category, artist, director, tracklist, cost));
             restart();

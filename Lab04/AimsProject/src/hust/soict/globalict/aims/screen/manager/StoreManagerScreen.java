@@ -11,13 +11,12 @@ import hust.soict.globalict.aims.store.Store;
 
 public class StoreManagerScreen extends JFrame{
     Container cp = getContentPane();
-    JPanel center, north;
+    JPanel center, north, header;
     protected Store store;
-    MenuItemListener milis;
+    MenuItemListener mil;
+
     public StoreManagerScreen(Store store){
         this.store = store;
-
-
         cp.setLayout(new BorderLayout());
         center = createCenter();
         north = createNorth();
@@ -29,29 +28,24 @@ public class StoreManagerScreen extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
     public JPanel createNorth(){
-        JPanel north = new JPanel();
+        north = new JPanel();
         north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
         north.add(createMenuBar());
         north.add(createHeader());
         return north;
     }
-    public void SwitchScreen(JPanel panel){
-        getContentPane().remove(center);
-        this.center=panel;
-        getContentPane().add(center, BorderLayout.CENTER);
-        revalidate();
-        repaint();
-        setVisible(true);
-    }
-
 
     public JMenuBar createMenuBar(){
-        milis = new MenuItemListener();
+        mil = new MenuItemListener();
         JMenu menu = new JMenu("Option");
+        //View store
         JMenuItem viewstore = new JMenuItem("View store");
         menu.add(viewstore);
-        viewstore.addActionListener(milis);
+        viewstore.addActionListener(mil);
+
+        //Update Store
         JMenu smUpdateStore = new JMenu("Update Store");
 
         JMenuItem addBook = new JMenuItem("Add Book");
@@ -62,9 +56,9 @@ public class StoreManagerScreen extends JFrame{
         smUpdateStore.add(addCD);
         smUpdateStore.add(addDVD);
 
-        addBook.addActionListener(milis);
-        addDVD.addActionListener(milis);
-        addCD.addActionListener(milis);
+        addBook.addActionListener(mil);
+        addDVD.addActionListener(mil);
+        addCD.addActionListener(mil);
 
         menu.add(smUpdateStore);
         
@@ -74,7 +68,6 @@ public class StoreManagerScreen extends JFrame{
 
         return menuBar;
     }
-
     public class MenuItemListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -94,31 +87,22 @@ public class StoreManagerScreen extends JFrame{
             }
         }
     }
-    JPanel createCenter(){
-        JPanel center = new JPanel();
-        center.setLayout(new GridLayout(3, 3, 2, 2));
 
-        ArrayList<Media> mediaInStore = store.getItemsInStore();
-        int numberofmedia = mediaInStore.size();
-        if(numberofmedia==0)return center;
-        for (int i=numberofmedia-1;i>=Math.max(numberofmedia-9,0);i--){
-            mediaScreen cell = new mediaScreen(mediaInStore.get(i));
-            center.add(cell);
-        }
-
-        center.revalidate();
-        center.repaint();
-        return center;
+    public void SwitchScreen(JPanel panel){
+        getContentPane().remove(center);
+        this.center=panel;
+        getContentPane().add(center, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+        setVisible(true);
     }
 
-
     public JPanel createHeader(){
-        JPanel header = new JPanel();
+        header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.X_AXIS));
 
         JLabel title = new JLabel("AIMS");
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN,50));
-
         title.setForeground(Color.CYAN);
 
         header.add(Box.createRigidArea(new Dimension(10, 10)));
@@ -129,4 +113,21 @@ public class StoreManagerScreen extends JFrame{
         return header;
     }
 
+
+    public JPanel createCenter(){
+        center = new JPanel();
+        center.setLayout(new GridLayout(3, 3, 2, 2));
+
+        ArrayList<Media> mediaInStore = store.getItemsInStore();
+        int numberMedia = mediaInStore.size();
+        if(numberMedia==0)return center;
+        for (int i=numberMedia-1;i>=Math.max(numberMedia-9,0);i--){
+            mediaScreen cell = new mediaScreen(mediaInStore.get(i));
+            center.add(cell);
+        }
+
+        center.revalidate();
+        center.repaint();
+        return center;
+    }
 }

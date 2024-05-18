@@ -16,34 +16,28 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
     private List<String> authors = new ArrayList<>(); 
 
     public AddBookToStoreScreen(Store store) {
-        super(" ADD NEW BOOK"); 
+        super(" Add new BOOK"); 
 
         this.store = store;
         addComponents(); 
         createButton(); 
-        btnadd.addActionListener(new Listener()); 
+        addButton.addActionListener(new Listener()); 
         add(panel); 
         setVisible(true); 
     }
 
-    @Override
     public void addComponents() {
         super.addComponents();
-
-        authorLabel = new JLabel("Author(s):"); 
+        authorLabel = new JLabel("Author(s): "); 
         authorTextArea = new JTextArea("");
         authorTextArea.setPreferredSize(new Dimension(500, 200));
-
         panel.add(addPanel1(authorLabel, authorTextArea)); 
     }
 
     public class Listener extends AddItemToStoreScreen.Listener {
-        @Override
         public void actionPerformed(ActionEvent e) {
             super.actionPerformed(e); 
-
             authors = Arrays.asList(authorTextArea.getText().split("\\S+\n"));
-
             store.addMedia(new Book(id, title, category, cost, authors));
         }
     }

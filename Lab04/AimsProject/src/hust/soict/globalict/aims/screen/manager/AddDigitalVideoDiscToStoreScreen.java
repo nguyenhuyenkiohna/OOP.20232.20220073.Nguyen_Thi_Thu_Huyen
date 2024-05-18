@@ -7,44 +7,40 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen{
-    JLabel ldirector, llength;
-    JTextField tfdirector, tflength;
+    Store store;
     private String director;
     private int length;
-    Store store;
-    Listener btnlis = new Listener();
-    public AddDigitalVideoDiscToStoreScreen(Store store){
-        super("DVD");
+    JLabel directorLabel, lengthLabel;
+    JTextField directorTextField, lengthTextField;
+    Listener buLis = new Listener();
 
+    public AddDigitalVideoDiscToStoreScreen(Store store){
+        super("Add new DVD");
         this.store= store;
         this.addComponents();
         super.createButton();
-        btnadd.addActionListener(new Listener());
+        addButton.addActionListener(new Listener());
         add(panel);
         add(Box.createGlue());
         setVisible(true);
     }
 
-    @Override
     public void addComponents(){
         super.addComponents();
-        ldirector = new JLabel("Director:");
-        llength = new JLabel("Length:");
+        directorLabel = new JLabel("Director: ");
+        directorTextField = new JTextField("");
+        panel.add(addPanel(directorLabel,directorTextField));
 
-        tfdirector = new JTextField("");
-        tflength = new JTextField("");
-
-        panel.add(addPanel(ldirector,tfdirector));
-        panel.add(addPanel(llength,tflength));
+        lengthLabel = new JLabel("Length :");
+        lengthTextField = new JTextField("");
+        panel.add(addPanel(lengthLabel,lengthTextField));
     }
 
     public class Listener extends AddItemToStoreScreen.Listener {
-        @Override
         public void actionPerformed(ActionEvent e){
             super.actionPerformed(e);
-//            JOptionPane.showMessageDialog(null, "doanxem");
-            director = new String(tfdirector.getText());
-            length = Integer.parseInt(tflength.getText());
+            director = new String(directorTextField.getText());
+            length = Integer.parseInt(lengthLabel.getText());
             store.addMedia(new DigitalVideoDisc(id, title, category, director, length, cost ));
         }
     }

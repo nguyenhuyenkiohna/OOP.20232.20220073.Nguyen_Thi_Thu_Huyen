@@ -39,9 +39,9 @@ public class mainStore {
         store.addMedia(cd2);
 
         CompactDisc cd3 = new CompactDisc(3, "Lam gi day", "VPop",  "Kon", "Lv",new ArrayList<>(), 22.2f);
-        cd3.addTrack(new Track("Hoang", 443));
-        cd3.addTrack(new Track("Khai", 392));
-        cd3.addTrack(new Track("Manh", 673));
+        cd3.addTrack(new Track("Do", 443));
+        cd3.addTrack(new Track("Xuan", 392));
+        cd3.addTrack(new Track("Loc", 673));
         store.addMedia(cd3);
 
         //DVD

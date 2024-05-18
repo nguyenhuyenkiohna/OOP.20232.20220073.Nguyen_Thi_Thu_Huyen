@@ -18,7 +18,7 @@ public class AddItemToStoreScreen extends JPanel{
     protected JTextField idTextField, titleTextField, categoryTextField, costTextField;
 
     protected JPanel panel = new JPanel();
-    protected JPanel panbut;
+    protected JPanel buttonPanel;
 
     public AddItemToStoreScreen(String s){
         setLayout(new FlowLayout());
@@ -32,14 +32,14 @@ public class AddItemToStoreScreen extends JPanel{
     }
 
     public void createButton (){
-        panbut = new JPanel();
-        panbut.setLayout(new BoxLayout(panbut, BoxLayout.X_AXIS));
-        panbut.setPreferredSize(new Dimension(400,30));
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setPreferredSize(new Dimension(400,30));
         addButton = new JButton("ADD TO STORE");
-        panbut.add(Box.createRigidArea(new Dimension(130,30)));
-        panbut.add(addButton);
-        panbut.add(Box.createHorizontalGlue());
-        panel.add(panbut);
+        buttonPanel.add(Box.createRigidArea(new Dimension(130,30)));
+        buttonPanel.add(addButton);
+        buttonPanel.add(Box.createHorizontalGlue());
+        panel.add(buttonPanel);
     }
 
     public void addComponents(){

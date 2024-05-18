@@ -81,10 +81,10 @@ public class AddItemToStoreScreen extends JPanel{
     public JPanel addPanel1(JLabel label, JTextArea textArea){
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new BoxLayout(jPanel, BoxLayout.X_AXIS));
-        jPanel.setPreferredSize(new Dimension(400,60));
+        jPanel.setPreferredSize(new Dimension(400,30));
 
         label.setHorizontalAlignment(JLabel.RIGHT);
-        label.setPreferredSize(new Dimension(120, 60));
+        label.setPreferredSize(new Dimension(120, 30));
         jPanel.add(label);
 
         jPanel.add(Box.createRigidArea(new Dimension(10,10)));

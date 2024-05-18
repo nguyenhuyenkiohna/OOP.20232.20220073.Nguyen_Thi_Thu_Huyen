@@ -1,0 +1,30 @@
+1.3 Compare Swing and AWT elements:
+
+1. Top-Level Containers:
+Feature	     AWT	                                        Swing
+Class	     Frame, Dialog, Applet	                       JFrame, JDialog, JApplet
+Appearance	 Platform-dependent, basic look and feel	   More modern, customizable look and feel
+Features	 Limited customization, less features	       Extensive customization, more features
+
+2. Component Class Names:
+AWT Component	Swing Component
+Button	        JButton
+Label	        JLabel
+TextField	    JTextField
+TextArea	    JTextArea
+Checkbox	    JCheckBox
+Choice	        JComboBox
+List	        JList
+Scrollbar	    JScrollBar
+Canvas	        JPanel (for custom drawing)
+Menu	        JMenuBar
+MenuItem	    JMenuItem
+3. Event Handling:
+Feature	           AWT	                                           Swing
+Model	           Event delegation	                               Event delegation
+Listeners	       ActionListener, ItemListener, etc.	           ActionListener, ItemListener, etc.
+Differences	       More low-level, less abstraction	               More robust, standardized event model
+4. Appearance:
+Feature	           AWT	                                           Swing
+Look and Feel	   Platform-dependent	                           Customizable, "look and feel" concept
+

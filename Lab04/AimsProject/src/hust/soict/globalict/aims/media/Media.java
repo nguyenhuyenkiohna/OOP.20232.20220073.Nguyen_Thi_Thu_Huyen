@@ -11,7 +11,17 @@ public abstract class Media {
     public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
     
-    public void play(){}
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
+
+    public String getTitle() {return title;}
+    public void setTitle(String title) {this.title = title;}
+
+    public String getCategory() {return category;}
+    public void setCategory(String category) {this.category = category;}
+
+    public float getCost() {return cost;}
+     public void setCost(float cost) {this.cost = cost;}
 
     public Media(int id, String title, String category, float cost) {
         this.id = id;
@@ -19,39 +29,7 @@ public abstract class Media {
         this.category = category;
         this.cost = cost;
     }
-    public Media(){
-    }
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public float getCost() {
-        return cost;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
+    public Media(){}
 
     public boolean isMatch(String title){
         return this.getTitle().toLowerCase().contains(title.toLowerCase());
@@ -62,11 +40,13 @@ public abstract class Media {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Media that)) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Media that)) return false;
         return Objects.equals(getTitle(), that.getTitle());
     }
+
+    public void play(){}
 
     public static class MediaComparatorByCostTitle implements Comparator<Media> {
         public int compare(Media media1, Media media2) {

@@ -3,7 +3,6 @@ package hust.soict.globalict.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Book extends Media{
     private List<String> authors=new ArrayList<String>();
 
@@ -11,15 +10,15 @@ public class Book extends Media{
         return authors;
     }
 
-    public void addAuthor(String authorName) {
-        if (!authors.contains(authorName)) {
-          authors.add(authorName);
+    public void addAuthor(String Name) {
+        if (!authors.contains(Name)) {
+          authors.add(Name);
         }
       }
 
-    public void removeAuthor(String authorName){
-        if(authors.contains(authorName)){
-            authors.remove(authorName);
+    public void removeAuthor(String Name){
+        if(authors.contains(Name)){
+            authors.remove(Name);
         }
     }
 
@@ -31,16 +30,6 @@ public class Book extends Media{
     public String toString(){
         return "Book" + " - " + this.getTitle()+" - "+this.getCategory()+" - "+this.getCost()+"$";
     }
-    
-    
-    // @Override
-    // public boolean checkType() {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'checkType'");
-    // }
-    @Override
-    public void play() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'play'");
-    }
+   
+    public void play() {}
 }

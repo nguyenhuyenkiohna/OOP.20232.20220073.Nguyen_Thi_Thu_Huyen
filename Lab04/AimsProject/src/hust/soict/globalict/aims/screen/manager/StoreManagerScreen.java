@@ -43,7 +43,10 @@ public class StoreManagerScreen extends JFrame{
         //View store
         JMenuItem viewstore = new JMenuItem("View store");
         menu.add(viewstore);
-        viewstore.addActionListener(mil);
+        viewstore.addActionListener(e->{
+            new StoreManagerScreen(store);
+            dispose();
+        });
 
         //Update Store
         JMenu smUpdateStore = new JMenu("Update Store");

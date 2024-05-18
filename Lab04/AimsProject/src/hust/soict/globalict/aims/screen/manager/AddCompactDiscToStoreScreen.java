@@ -10,48 +10,48 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
-    JLabel artistLabel, tracklistLabel, ldirector, llength, ltrack;
-    JTextField tfartist, tftracklist, tfdirector, tflength, tftrack;
+    Store store;
     private String artist;
     private ArrayList<Track> tracklist = new ArrayList<>();
     private String director;
-    Store store;
-    JPanel trackscreen, pandone;
-    JTextArea Listoftrack ;
-    JButton btntrack;
-    public AddCompactDiscToStoreScreen(Store store){
-        super("CD");
+    JLabel artistLabel, tracklistLabel, directorLabel, lengthLabel, trackLabel;
+    JTextField artistTextField, tracklistTextField, directorTextField, lengthTextField, trackTextField;
+    JPanel trackscreen, paneled;
+    JTextArea trackList ;
+    JButton buttonTrack;
 
+    public AddCompactDiscToStoreScreen(Store store){
+        super("Add new CD");
         this.store= store;
         this.addComponents();
         super.createButton();
-        btnadd.addActionListener(new Listener());
+        addButton.addActionListener(new Listener());
         add(panel);
         setVisible(true);
     }
 
-    @Override
     public void addComponents(){
         super.addComponents();
         artistLabel = new JLabel("Artist:");
-        ldirector = new JLabel("Director:");
+        artistTextField = new JTextField("");
+        panel.add(addPanel(artistLabel,artistTextField));
 
-        tfartist = new JTextField("");
-        tfdirector = new JTextField("");
-
-        panel.add(addPanel(artistLabel,tfartist));
-        panel.add(addPanel(ldirector, tfdirector));
+        directorLabel = new JLabel("Director:");
+        directorTextField = new JTextField("");
+        panel.add(addPanel(directorLabel, directorTextField));
     }
 
-    public void turnonoff(boolean status){
-        tfartist.setEditable(status);
-        tfdirector.setEditable(status);
-        tfcost.setEditable(status);
-        tfcategory.setEditable(status);
-        tftitle.setEditable(status);
-        tfid.setEditable(status);
+    public void OnOff(boolean stus){
+        idTextField.setEditable(stus);
+        titleTextField.setEditable(stus);
+        categoryTextField.setEditable(stus);
+        costTextField.setEditable(stus);
+        artistTextField.setEditable(stus);
+        directorTextField.setEditable(stus);
     }
+
     public JPanel TrackScreen(){
         JPanel addTrack = new JPanel();
         addTrack.setLayout(new BoxLayout(addTrack, BoxLayout.X_AXIS));
@@ -63,94 +63,90 @@ public class AddCompactDiscToStoreScreen extends  AddItemToStoreScreen{
         rightside.setPreferredSize(new Dimension(200,90));
         rightside.setBorder(border);
 
-        ltrack = new JLabel("Track name:");
-        tftrack = new JTextField("");
+        trackLabel = new JLabel("Track name:");
+        trackTextField = new JTextField("");
+        rightside.add(addPanel(trackLabel,trackTextField));
 
-        llength = new JLabel("Length of track:");
-        tflength = new JTextField("");
+        lengthLabel = new JLabel("Length of track:");
+        lengthTextField = new JTextField("");
+        rightside.add(addPanel(lengthLabel,lengthTextField));
 
-        btntrack = new JButton("Add track");
-        btntrack.addActionListener(new TrackListener());
-
-        Listoftrack = new JTextArea(("Tracklist:"));
-        Listoftrack.setBorder(border);
-        Listoftrack.setEditable(false);
-
-        rightside.add(addPanel(ltrack,tftrack));
-
-        rightside.add(addPanel(llength,tflength));
-        rightside.add(btntrack);
+        buttonTrack = new JButton("Add track");
+        buttonTrack.addActionListener(new ListenerTrack());
+        rightside.add(buttonTrack);
 
         addTrack.add(rightside);
+
         addTrack.add(Box.createRigidArea(new Dimension(10,10)));
-        addTrack.add(Listoftrack);
+
+        trackList = new JTextArea(("Tracklist:"));
+        trackList.setBorder(border);
+        trackList.setEditable(false);
+
+        addTrack.add(trackList);
 
         return addTrack;
     }
+
     public void CreateTrackList(){
-        turnonoff(false);
+        OnOff(false);
         remove(panel);
-        panel.remove(panbut);
+        panel.remove(buttonPanel);
         panel.add(trackscreen=TrackScreen());
 
-        pandone = new JPanel();
-        pandone.setLayout(new BoxLayout(pandone, BoxLayout.X_AXIS));
-        pandone.setPreferredSize(new Dimension(400,30));
-        JButton btndone = new JButton("ADD CD");
-        btndone.addActionListener(new DoneListener());
+        paneled = new JPanel();
+        paneled.setLayout(new BoxLayout(paneled, BoxLayout.X_AXIS));
+        paneled.setPreferredSize(new Dimension(400,30));
+        JButton buttoned = new JButton("ADD CD");
+        buttoned.addActionListener(new Listenered());
 
-        pandone.add(Box.createRigidArea(new Dimension(130,30)));
-        pandone.add(btndone);
-        pandone.add(Box.createHorizontalGlue());
-        panel.add(pandone);
-
-
+        paneled.add(Box.createRigidArea(new Dimension(130,30)));
+        paneled.add(buttoned);
+        paneled.add(Box.createHorizontalGlue());
+        panel.add(paneled);
         add(panel);
+
         revalidate();
         repaint();
         setVisible(true);
     }
 
     public class Listener extends AddItemToStoreScreen.Listener {
-        @Override
         public void actionPerformed(ActionEvent e){
             super.actionPerformed(e);
             CreateTrackList();
         }
     }
 
-    public  class TrackListener implements ActionListener{
-        @Override
+    public  class ListenerTrack implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            String name = new String(tftrack.getText());
-            int leng = Integer.parseInt(tflength.getText());
+            String name = new String(trackTextField.getText());
+            int leng = Integer.parseInt(lengthTextField.getText());
             tracklist.add(new Track(name,leng));
-            Listoftrack.setText(Listoftrack.getText()+"\n"+tracklist.size()+". "+
-                    name+" - Length: "+leng);
+            trackList.setText(trackList.getText()+"\n"+tracklist.size()+". "+name+" - Length: "+leng);
         }
     }
 
+    public class Listenered extends AddItemToStoreScreen.Listener{
+        public void actionPerformed(ActionEvent e){
+            super.actionPerformed(e);
+            director = new String(directorTextField.getText());
+            artist = new String(artistTextField.getText());
+            store.addMedia(new CompactDisc(id, title, category, artist, director, tracklist, cost));
+            restart();
+        }
+    }
+    
     public void restart(){
         remove(panel);
         panel.remove(trackscreen);
-        panel.remove(pandone);
-        panel.add(panbut);
+        panel.remove(paneled);
+        panel.add(buttonPanel);
         add(panel);
         revalidate();
         repaint();
         setVisible(true);
-        turnonoff(true);
-    }
-    public class DoneListener extends AddItemToStoreScreen.Listener{
-        @Override
-        public void actionPerformed(ActionEvent e){
-            super.actionPerformed(e);
-            director = new String(tfdirector.getText());
-            artist = new String(tfartist.getText());
-
-            store.addMedia(new CompactDisc(id, title, category, artist, director, tracklist, cost));
-            restart();
-        }
+        OnOff(true);
     }
 
 }

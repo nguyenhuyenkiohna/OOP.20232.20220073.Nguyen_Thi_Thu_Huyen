@@ -11,25 +11,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class mediaScreen extends JPanel {
-    private Media media;
     private JButton playButton = new JButton("Play");
+
     public mediaScreen(Media media) {
-        this.media = media;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         JLabel title = new JLabel(media.getTitle());
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 15));
         title.setAlignmentX(CENTER_ALIGNMENT);
+
         JLabel cost = new JLabel("" + media.getCost() + "$");
         cost.setAlignmentX(CENTER_ALIGNMENT);
 
-        JPanel container = new JPanel();
-        container.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JPanel contain = new JPanel();
+        contain.setLayout(new FlowLayout(FlowLayout.CENTER));
+
         if (media instanceof Playable) {
-            container.add(playButton);
+            contain.add(playButton);
         }
 
         playButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 if (media instanceof DigitalVideoDisc){
                     playDVD((DigitalVideoDisc) media);
@@ -46,23 +47,21 @@ public class mediaScreen extends JPanel {
         this.add(title);
         this.add(cost);
         this.add(Box.createVerticalGlue());
-        this.add(container);
+        this.add(contain);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
 
 
     private void playCD(CompactDisc media){
-        JDialog cdD = new JDialog();
-
+        JDialog CD = new JDialog();
         JPanel cd = new JPanel();
         cd.setLayout(new GridLayout(media.getTrackList().size() + 6, 1));
 
-        JLabel Name = new JLabel("You are playing CD: " + media.getTitle());
-        JLabel Artist = new JLabel("Artist: " + media.getArtist());
-        JLabel Length = new JLabel("Total length: " + media.getLength());
-
+        JLabel Name = new JLabel("CD: " + media.getTitle());
         cd.add(Name);
+        JLabel Artist = new JLabel("Artist: " + media.getArtist());
         cd.add(Artist);
+        JLabel Length = new JLabel("Total length: " + media.getLength());
         cd.add(Length);
 
         for(int i = 0; i < media.getTrackList().size(); i++){
@@ -72,30 +71,25 @@ public class mediaScreen extends JPanel {
             cd.add(trackLength);
         }
 
-        cd.add(cd);
-
-        cdD.setSize(512, 384);
-        cdD.setLocationRelativeTo(null);
-        cdD.setVisible(true);
+        CD.add(cd);
+        CD.setSize(512, 384);
+        CD.setLocationRelativeTo(null);
+        CD.setVisible(true);
     }
     private void playDVD(DigitalVideoDisc media){
-        JDialog dvdD = new JDialog();
-
+        JDialog DVD = new JDialog();
         JPanel dvd = new JPanel();
         dvd.setLayout(new GridLayout(2, 1));
 
-        JLabel Name = new JLabel("You are playing DVD: " + media.getTitle());
-        JLabel Length = new JLabel("DVD length: " + media.getLength());
-
+        JLabel Name = new JLabel("DVD: " + media.getTitle());
         dvd.add(Name);
+
+        JLabel Length = new JLabel("DVD length: " + media.getLength());
         dvd.add(Length);
-
-        dvdD.add(dvd);
-
-        dvdD.setSize(350, 200);
-        dvdD.setLocationRelativeTo(null);
-
-        dvdD.setVisible(true);
-
+        
+        DVD.add(dvd);
+        DVD.setSize(350, 200);
+        DVD.setLocationRelativeTo(null);
+        DVD.setVisible(true);
     }
 }

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 
 import java.util.Collections;
 
+
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED=20;
 //    private ArrayList<Media> itemOrdered = new ArrayList<Media>();
@@ -46,31 +47,31 @@ public class Cart {
             System.out.printf("%d.%s\n",i+1,itemOrdered.get(i).toString());
         }
         System.out.println("Total cost: "+totalCost()+"$");
-        System.out.println("********************************************************************");
-
-    }
-
-
-    public ObservableList<Media> SearchByTitle(String title){
-        ObservableList<Media> results = FXCollections.observableArrayList();
-        System.out.println("Search results for title: " + title);
-        for (int i=0; i< itemOrdered.size(); i++) {
-            if (itemOrdered.get(i).isMatch(title)){
-                results.add(itemOrdered.get(i));
-            }
-        }
-        if (results.isEmpty()){
-            System.out.println("No matching media found with title: " + title);
-        }
-        return results;
+        System.out.println("**********************************************************************");
     }
 
     public float totalCost() {
-        float sum = 0;
+        float tong = 0;
         for (int i = 0; i < itemOrdered.size(); i++) {
-            sum += itemOrdered.get(i).getCost();
+            tong += itemOrdered.get(i).getCost();
         }
-        return sum;
+        return tong;
+
+
+        public ObservableList<Media> SearchByTitle(String title) {
+            ObservableList<Media> results = FXCollections.observableArrayList();
+            System.out.println("Search results for title: " + title);
+            for (int i = 0; i < itemOrdered.size(); i++) {
+                if (itemOrdered.get(i).isMatch(title)) {
+                    results.add(itemOrdered.get(i));
+                }
+            }
+            if (results.isEmpty()) {
+                System.out.println("No matching media found with title: " + title);
+            }
+            return results;
+        }
+
     }
 
     public ObservableList<Media> SearchByID(int id){
@@ -87,16 +88,17 @@ public class Cart {
         return results;
     }
 
-    public void SortByTitle(){
-        Collections.sort(itemOrdered, Media.COMPARE_BY_TITLE_COST);    
-        System.out.println("List of medias sorted by title in cart:");
+    public void SortByCost(){
+        Collections.sort(itemOrdered, Media.COMPARE_BY_COST_TITLE);
+        System.out.println("List of medias sorted by cost in cart:");
         for(int i=0 ;i<itemOrdered.size();i++){
             System.out.println((i+1)+itemOrdered.get(i).toString());
         }
     }
-    public void SortByCost(){
-        Collections.sort(itemOrdered, Media.COMPARE_BY_COST_TITLE);    
-        System.out.println("List of medias sorted by cost in cart:");
+
+    public void SortByTitle(){
+        Collections.sort(itemOrdered, Media.COMPARE_BY_TITLE_COST);    
+        System.out.println("List of medias sorted by title in cart:");
         for(int i=0 ;i<itemOrdered.size();i++){
             System.out.println((i+1)+itemOrdered.get(i).toString());
         }

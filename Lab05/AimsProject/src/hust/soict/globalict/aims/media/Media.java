@@ -8,6 +8,7 @@ public abstract class Media {
     private String title;
     private String category;
     private float cost;
+
     public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
     
@@ -52,7 +53,7 @@ public abstract class Media {
 
     public int compareTo(Media other) {
         if (other == null) {
-            throw new NullPointerException("The compared media object is null");
+            throw new NullPointerException("The compared media object is null.");
         }
         int result = this.getTitle().compareTo(other.getTitle());
         if (result == 0) {
@@ -62,20 +63,20 @@ public abstract class Media {
     }
 
     public static class MediaComparatorByCostTitle implements Comparator<Media> {
-        public int compare(Media media1, Media media2) {
-            int result = media1.getTitle().compareTo(media2.getTitle());
+        public int compare(Media m1, Media m2) {
+            int result = m1.getTitle().compareTo(m2.getTitle());
             if (result == 0) {
-                result = Float.compare(media2.getCost(), media1.getCost());
+                result = Float.compare(m2.getCost(), m1.getCost());
             }
             return result;
         }
     }
 
     public static class MediaComparatorByTitleCost implements Comparator<Media> {
-        public int compare(Media media1, Media media2) {
-            int result = Float.compare(media2.getCost(), media1.getCost());
+        public int compare(Media m1, Media m2) {
+            int result = Float.compare(m2.getCost(), m1.getCost());
             if (result == 0) {
-                result = media1.getTitle().compareTo(media2.getTitle());
+                result = m1.getTitle().compareTo(m2.getTitle());
             }
             return result;
         }

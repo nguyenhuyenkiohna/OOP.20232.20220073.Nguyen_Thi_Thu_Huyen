@@ -31,7 +31,7 @@ public class TestViewCartScreen extends Application {
 
     public static void main(String[] args) throws Exception{
         cart = new Cart();
-
+//Book
         ObservableList<String> author1 = FXCollections.observableArrayList("Joshua Bloch", "Ki Oh Na");
         ObservableList<String> author2 = FXCollections.observableArrayList("Robert C.Martin", "StrongDz");
         ObservableList<String> author3 = FXCollections.observableArrayList("Ardrew Hunt", "David Thomas");
@@ -43,7 +43,7 @@ public class TestViewCartScreen extends Application {
         cart.addMedia(book1);
         cart.addMedia(book2);
         cart.addMedia(book3);
-
+//CpmpactDisc
         ObservableList<Track> tracks1 = FXCollections.observableArrayList();
         tracks1.add(new Track("Track one",320));
         tracks1.add(new Track("Track two",250));
@@ -68,7 +68,7 @@ public class TestViewCartScreen extends Application {
         cart.addMedia(cd1);
         cart.addMedia(cd2);
         cart.addMedia(cd3);
-
+//DigitalVideoDisc
         DigitalVideoDisc dvd1 = new DigitalVideoDisc(1, "Inception", "Sci-Fi", "Christopher Nolan", 148, 19.99f);
         DigitalVideoDisc dvd2 = new DigitalVideoDisc(2, "The Godfather", "Crime", "Francis Ford Coppola", 175, 24.99f);
         DigitalVideoDisc dvd3 = new DigitalVideoDisc(3, "The Dark Knight", "Action", "Christopher Nolan", 152, 22.99f);

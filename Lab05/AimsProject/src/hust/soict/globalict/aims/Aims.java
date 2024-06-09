@@ -17,58 +17,6 @@ public class Aims {
     static Store store = new Store();
     static Cart cart = new Cart();
 
-    public static void main(String[] args) {
-
-        while (true) {
-            Scanner input = new Scanner(System.in);
-            showMenu();
-            System.out.print("Your choice:");
-            try {
-                int n = input.nextInt();
-                input.nextLine();
-                switch (n) {
-                    case 0:
-                        System.out.println("Thanks for using our service! Hope to see you again");
-                        return;
-                    case 1:
-                        Storefunc();
-                        break;
-                    case 2:
-                        UpdateStore();
-                        System.out.print("Your choice:");
-                        try {
-                            int kk = input.nextInt();
-                            input.nextLine(); // consume the newline character
-                            System.out.println("Enter the title: ");
-                            String searchTitle = input.nextLine();
-                            Media media = store.SearchByTitle(searchTitle);
-                            if (media == null) break;
-                            if (kk == 1)
-                                store.addMedia(media);
-                            else
-                                store.removeMedia(media);
-                        } catch (InputMismatchException e) {
-                            System.out.println("Invalid input. Please enter a valid number.");
-                            input.nextLine(); // consume the newline character
-                        }
-                        break;
-                    case 3:
-                        cart.print();
-                        cartFunc();
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Please enter a valid number.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            } catch (Exception e) {
-                // Handle other exceptions if any
-                System.out.println("An error occurred: " + e.getMessage());
-            }
-            input.close();
-        }
-    }
-
     public static void showMenu() {
         System.out.println("AIMS: ");
         System.out.println("--------------------------------");
@@ -274,8 +222,59 @@ public class Aims {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
-                input.nextLine(); // consume the newline character
+                input.nextLine();
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        while (true) {
+            Scanner input = new Scanner(System.in);
+            showMenu();
+            System.out.print("Your choice:");
+            try {
+                int n = input.nextInt();
+                input.nextLine();
+                switch (n) {
+                    case 0:
+                        System.out.println("Thanks for using our service! Hope to see you again");
+                        return;
+                    case 1:
+                        Storefunc();
+                        break;
+                    case 2:
+                        UpdateStore();
+                        System.out.print("Your choice:");
+                        try {
+                            int kk = input.nextInt();
+                            input.nextLine();
+                            System.out.println("Enter the title: ");
+                            String searchTitle = input.nextLine();
+                            Media media = store.SearchByTitle(searchTitle);
+                            if (media == null) break;
+                            if (kk == 1)
+                                store.addMedia(media);
+                            else
+                                store.removeMedia(media);
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Please enter a valid number.");
+                            input.nextLine();
+                        }
+                        break;
+                    case 3:
+                        cart.print();
+                        cartFunc();
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid number.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            } catch (Exception e) {
+                // Handle other exceptions if any
+                System.out.println("An error occurred: " + e.getMessage());
+            }
+            input.close();
         }
     }
 }
